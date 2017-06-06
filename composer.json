@@ -1,0 +1,27 @@
+{
+  "name": "tony/migration",
+  "authors": [
+    {
+      "name": "Tony Chen",
+      "email": "chendan316@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "tony/php-db": "0.1"
+  },
+  "require-dev": {
+    "codeception/codeception": "@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tony\\Migration\\": "src/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/TonyChen-SH/php-db.git"
+    }
+  ]
+}
