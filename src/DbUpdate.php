@@ -27,7 +27,7 @@ class DbUpdate
         $version = $this->checkVersionTable();
 
         if ($version === false) {
-            throw new \Exception("version表操作失败");
+            throw new \Exception('version表操作失败');
             exit();
         }
 
@@ -42,17 +42,19 @@ class DbUpdate
             }
 
             //如果数据库最新的版本比当前版本文件大，就不需要更新了(因为已经更新过了).
-            if ($version >= $ver) continue;
+            if ($version >= $ver) {
+                continue;
+            }
 
-            include $this->dbVersionPath . $versionFile;
+            include $this->dbVersionPath.$versionFile;
 
             // 类名同文件名一致
             $className = basename($versionFile, '.php');
 
             /**
-             * @var AbstractMigration $instance
+             * @var AbstractMigration
              */
-            $instance = new $className;
+            $instance = new $className();
             //传递model
             $instance->setPdo($this->pdo);
             //执行变动
@@ -91,9 +93,11 @@ class DbUpdate
     }
 
     /**
-     * 根据根据路径取数据库版本文件
-     * @return array
+     * 根据根据路径取数据库版本文件.
+     *
      * @throws \Exception
+     *
+     * @return array
      */
     public function getVersionFileList()
     {

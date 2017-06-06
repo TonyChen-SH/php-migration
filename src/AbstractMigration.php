@@ -1,4 +1,5 @@
-<?php /**
+<?php
+/**
  * User: Tony Chen
  * Date: 2017/6/2.
  */
@@ -28,8 +29,9 @@ abstract class AbstractMigration
     }
 
     /**
-     * 数据库操作的实现此方法
+     * 数据库操作的实现此方法.
+     *
      * @return mixed
      */
-    abstract function change();
+    abstract public function change();
 }
