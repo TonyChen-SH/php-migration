@@ -1,4 +1,3 @@
-#使用方法
 1. 把整个文件夹放在 应用文件夹的Common文件夹下
 2. 在DbVersion内编写数据库操作文件，具体参考V1.class.php文件
 3. 写在以后，更新配置文件DbUpdateConfig内的数组:
