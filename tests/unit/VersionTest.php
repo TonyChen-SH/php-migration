@@ -38,7 +38,8 @@ class VersionTest extends \Codeception\Test\Unit
     }
 
     /**
-     * 测试创建表
+     * 测试创建表.
+     *
      * @depends testHasVersionTable
      */
     public function testCreateVersionTable($hasTable)
@@ -49,7 +50,8 @@ class VersionTest extends \Codeception\Test\Unit
     }
 
     /**
-     * 测试插入版本号
+     * 测试插入版本号.
+     *
      * @depends testHasVersionTable
      */
     public function testInsertLastVersion($hasTable)
@@ -64,7 +66,8 @@ class VersionTest extends \Codeception\Test\Unit
     }
 
     /**
-     * 测试查找版本号
+     * 测试查找版本号.
+     *
      * @depends testInsertLastVersion
      */
     public function testPickOutUpdateVersion($bool)

@@ -22,6 +22,5 @@ class AbstractMigrationTest extends \Codeception\Test\Unit
     // tests
     public function testSomeFeature()
     {
-
     }
 }

@@ -4,7 +4,7 @@
  * Created by PhpStorm.
  * User: chendan
  * Date: 2017/4/17
- * Time: 下午9:41
+ * Time: 下午9:41.
  */
 
 namespace Tony\Migration;
@@ -24,7 +24,8 @@ class Version
     }
 
     /**
-     * 检查数据库中是否有version表
+     * 检查数据库中是否有version表.
+     *
      * @return bool
      */
     public function hasVersionTable()
@@ -40,7 +41,8 @@ class Version
     }
 
     /**
-     * 创建version表
+     * 创建version表.
+     *
      * @return bool
      */
     public function createVersionTable()
@@ -52,13 +54,13 @@ class Version
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
         return $this->pdo->execute($sql);
-
     }
 
     /**
-     * 插入最后一个版本号
+     * 插入最后一个版本号.
      *
      * @param $value
+     *
      * @return bool
      */
     public function insertLastVersion($value)
@@ -70,12 +72,13 @@ class Version
     }
 
     /**
-     * 查找最后一次更新的版本
+     * 查找最后一次更新的版本.
+     *
      * @return false|int
      */
     public function pickOutUpdateVersion()
     {
-        $ret = $this->pdo->fetchAll("SELECT IFNULL(MAX(`version`),0) AS `version` FROM `version` LIMIT 1;");
+        $ret = $this->pdo->fetchAll('SELECT IFNULL(MAX(`version`),0) AS `version` FROM `version` LIMIT 1;');
 
         return $ret[0]['version'];
     }
