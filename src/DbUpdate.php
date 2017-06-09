@@ -25,6 +25,15 @@ class DbUpdate
     }
 
     /**
+     * 获取数据库对象
+     * @return \Tony\DB\Database
+     */
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
+
+    /**
      * 执行更新操作的入口.
      */
     public function update()

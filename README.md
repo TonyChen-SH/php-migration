@@ -21,6 +21,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/TonyChen-SH/migration.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/TonyChen-SH/php-db.git"
     }
   ]
 ```

@@ -1,7 +1,10 @@
 {
   "name": "tony/migration",
-  "keywords": ["db update","migration"],
-  "license" : "Apache License 2.0",
+  "keywords": [
+    "db update",
+    "migration"
+  ],
+  "license": "Apache License 2.0",
   "authors": [
     {
       "name": "Tony Chen",
