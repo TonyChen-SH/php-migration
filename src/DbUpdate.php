@@ -13,6 +13,11 @@ class DbUpdate
     private $pdo;
     private $dbVersionPath;
 
+    /**
+     * DbUpdate constructor.
+     * @param array $dbConfig
+     * @param string $dbVersionPath
+     */
     public function __construct(array $dbConfig, $dbVersionPath)
     {
         $this->pdo = DbFactory::getInstance($dbConfig);
@@ -46,13 +51,13 @@ class DbUpdate
                 continue;
             }
 
-            include $this->dbVersionPath.$versionFile;
+            include $this->dbVersionPath . $versionFile;
 
             // 类名同文件名一致
             $className = basename($versionFile, '.php');
 
             /**
-             * @var AbstractMigration
+             * @var AbstractMigration $instance
              */
             $instance = new $className();
             //传递model
@@ -106,7 +111,7 @@ class DbUpdate
             exit();
         }
 
-        $versionFileList = [];
+        $versionFileList = array();
         $iterator = new \DirectoryIterator($this->dbVersionPath);
         foreach ($iterator as $versionFile) {
             if ($versionFile->isFile()) {

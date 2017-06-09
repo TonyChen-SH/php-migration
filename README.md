@@ -56,3 +56,6 @@ $dbUpdate->update();
 ````php
 
 ````
+
+### 许可
+本项目采用Apache License 2.0协议，了解更多请看协议文件。
