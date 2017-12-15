@@ -21,7 +21,7 @@ class DbUpdate
      */
     public function __construct(array $dbConfig, $dbVersionPath)
     {
-        $this->pdo = DbFactory::getInstance($dbConfig);
+        $this->pdo           = DbFactory::getInstance($dbConfig);
         $this->dbVersionPath = $dbVersionPath;
     }
 
@@ -40,16 +40,16 @@ class DbUpdate
      */
     public function update()
     {
-        $version = $this->checkVersionTable();
-
-        if ($version === false) {
-            throw new \Exception('version表操作失败');
-            exit();
-        }
-
         $versionList = $this->getVersionFileList();
 
         foreach ($versionList as $ver => $versionFile) {
+            // 每次执行前，都获取一次最新的数据库版本号
+            $version = $this->checkVersionTable();
+            if ($version === false) {
+                throw new \Exception('version表操作失败');
+                exit();
+            }
+
             // 如果没有按规定的规则给数据库版本文件起名，会报错
             // 文件夹格式： V1.php / V2.php / V3.php ......
             if (!is_numeric($ver)) {
@@ -62,8 +62,13 @@ class DbUpdate
                 continue;
             }
 
-            include $this->dbVersionPath.$versionFile;
+            // 数据版本不能跨版本号执行操作
+            // 防止多次请求造成的跨版本号执行
+            if (($ver - 1) > $version) {
+                continue;
+            }
 
+            include $this->dbVersionPath . $versionFile;
             // 类名同文件名一致
             $className = basename($versionFile, '.php');
 
@@ -123,10 +128,10 @@ class DbUpdate
         }
 
         $versionFileList = [];
-        $iterator = new \DirectoryIterator($this->dbVersionPath);
+        $iterator        = new \DirectoryIterator($this->dbVersionPath);
         foreach ($iterator as $versionFile) {
             if ($versionFile->isFile()) {
-                $fileName = $versionFile->getFilename();
+                $fileName                                                    = $versionFile->getFilename();
                 $versionFileList[substr(basename($fileName, '.php'), -1, 1)] = $fileName;
             }
         }

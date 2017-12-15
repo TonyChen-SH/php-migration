@@ -13,7 +13,7 @@
   ],
   "require": {
     "php": ">=5.3",
-    "tony/php-db": "0.1"
+    "tony/php-db": "0.*"
   },
   "require-dev": {
     "codeception/codeception": "@dev"
