@@ -45,7 +45,7 @@ define('DB_VERSION_PATH', APP_PATH.'example/DbVersion/');
 
 $path = DB_VERSION_PATH;
 // 初始化数据库版本工具[数据库配置,数据库版本文件文件夹路径]
-$dbUpdate = new DbUpdate(['dsn' => 'mysql:host=127.0.0.1;dbname=migration', 'user' => 'root', 'password' => '123456'], $path);
+$dbUpdate = new DbUpdate(['dsn' => 'mysql:host=127.0.0.1;dbname=migration;charset=utf8', 'user' => 'root', 'password' => '123456'], $path);
 // 开始数据库版本升级
 $dbUpdate->update();
 
