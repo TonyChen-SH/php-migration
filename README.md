@@ -45,7 +45,7 @@ define('DB_VERSION_PATH', APP_PATH.'example/DbVersion/');
 
 $path = DB_VERSION_PATH;
 // 初始化数据库版本工具[数据库配置,数据库版本文件文件夹路径]
-$dbUpdate = new DbUpdate(['dsn' => 'mysql:host=127.0.0.1;dbname=migration', 'user' => 'root', 'password' => '123456'], $path);
+$dbUpdate = new DbUpdate(['dsn' => 'mysql:host=127.0.0.1;dbname=migration;charset=utf8', 'user' => 'root', 'password' => '123456'], $path);
 // 开始数据库版本升级
 $dbUpdate->update();
 
@@ -56,10 +56,10 @@ $dbUpdate->update();
 //    3.集成与实现migration接口
 
 ````
+### TODO
+- [ ] 删除指定版本的版本号以后，可以把该版本号重新执行一遍
+- [ ] 每个版本号，数据内需要更新内容的备注
 
-````php
-
-````
 
 ### 许可
 本项目采用Apache License 2.0协议，了解更多请看协议文件。
