@@ -1,4 +1,4 @@
-## php migration 
+## php migration
 [![StyleCI](https://styleci.io/repos/93504337/shield?branch=develop)](https://styleci.io/repos/93504337)
 
 ### 如果有以下几种问题，那么你就来对地方了
@@ -54,11 +54,12 @@ $dbUpdate->update();
 //    1.首先这是一个类文件
 //    2.文件夹名与类名相同
 //    3.集成与实现migration接口
-
 ````
+![table show](images/2018/01/table-show.png)
+
 ### TODO
-- [ ] 删除指定版本的版本号以后，可以把该版本号重新执行一遍
-- [ ] 每个版本号，数据内需要更新内容的备注
+- [x] 删除指定版本的版本号以后，可以把该版本号重新执行一遍
+- [x] 每个版本号，数据内需要更新内容的备注
 
 
 ### 许可
