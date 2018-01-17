@@ -8,6 +8,10 @@ namespace Tony\Migration;
 
 use Tony\DB\Database;
 
+/**
+ * Class AbstractMigration
+ * @package Tony\Migration
+ */
 abstract class AbstractMigration
 {
     private $pdo;
@@ -34,4 +38,11 @@ abstract class AbstractMigration
      * @return mixed
      */
     abstract public function change();
+
+    /**
+     * 数据库操作备注
+     *
+     * @return string
+     */
+    abstract public function getComment();
 }

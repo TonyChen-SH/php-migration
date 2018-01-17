@@ -25,6 +25,13 @@
   },
   "repositories": [
     {
+      "packagist": false
+    },
+    {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    },
+    {
       "type": "vcs",
       "url": "https://github.com/TonyChen-SH/php-db.git"
     }

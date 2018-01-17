@@ -1,68 +1,20 @@
 <?php
 
-use Tony\DB\DbFactory;
-use Tony\Migration\Version;
+use Tony\Migration\CreateVersionTable;
 
-class VersionTest extends \Codeception\Test\Unit
+class VersionTest extends TestBase
 {
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-    private $pdo;
-    /**
-     * @var Version
-     */
-    private $version;
-
-    protected function _before()
-    {
-        $this->pdo = DbFactory::getInstance(getDbConfig());
-        $this->version = new Version($this->pdo);
-    }
-
-    protected function _after()
-    {
-    }
-
-    // tests
-    public function testHasVersionTable()
-    {
-        if ($this->version->hasVersionTable()) {
-            $this->assertTrue($this->version->hasVersionTable());
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * 测试创建表.
-     *
-     * @depends testHasVersionTable
-     */
-    public function testCreateVersionTable($hasTable)
-    {
-        if (!$hasTable) {
-            $this->assertTrue($this->version->createVersionTable());
-        }
-    }
-
     /**
      * 测试插入版本号.
      *
-     * @depends testHasVersionTable
      */
-    public function testInsertLastVersion($hasTable)
+    public function testInsertLastVersion()
     {
-        if ($hasTable) {
-            $this->assertTrue($this->version->insertLastVersion($this->version->pickOutUpdateVersion() + 1));
-
-            return true;
+        if ((new CreateVersionTable($this->version))->hasVersionTable())
+        {
+            $currentVersion = $this->version->pickOutUpdateVersion() + 1;
+            static::assertTrue($this->version->insertLastVersion($currentVersion, 'test comment-' . $currentVersion));
         }
-
-        return false;
     }
 
     /**
@@ -70,10 +22,8 @@ class VersionTest extends \Codeception\Test\Unit
      *
      * @depends testInsertLastVersion
      */
-    public function testPickOutUpdateVersion($bool)
+    public function testPickOutUpdateVersion()
     {
-        if ($bool) {
-            $this->assertGreaterThan(0, $this->version->pickOutUpdateVersion());
-        }
+        static::assertGreaterThan(0, $this->version->pickOutUpdateVersion());
     }
 }

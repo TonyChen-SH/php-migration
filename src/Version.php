@@ -11,6 +11,10 @@ namespace Tony\Migration;
 
 use Tony\DB\Database;
 
+/**
+ * Class Version
+ * @package Tony\Migration
+ */
 class Version
 {
     /**
@@ -18,56 +22,37 @@ class Version
      */
     private $pdo;
 
+    /**
+     * Version constructor.
+     * @param $pdo
+     */
     public function __construct($pdo)
     {
-        $this->pdo = $pdo;
+        $this->setPdo($pdo);
     }
 
     /**
-     * 检查数据库中是否有version表.
-     *
-     * @return bool
+     * 创建version表
      */
-    public function hasVersionTable()
+    public function checkAndCreateTable()
     {
-        $ret = false;
-        $count = count($this->pdo->fetchAll("SHOW TABLES LIKE 'version'"));
-
-        if ($count > 0) {
-            $ret = true;
-        }
-
-        return $ret;
-    }
-
-    /**
-     * 创建version表.
-     *
-     * @return bool
-     */
-    public function createVersionTable()
-    {
-        $sql = "CREATE TABLE `version` (
-  `version` int(10) unsigned NOT NULL DEFAULT '0',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-
-        return $this->pdo->execute($sql);
+        (new CreateVersionTable($this))->checkAndCreateTable();
     }
 
     /**
      * 插入最后一个版本号.
      *
      * @param $value
+     * @param $comment
      *
      * @return bool
      */
-    public function insertLastVersion($value)
+    public function insertLastVersion($value, $comment)
     {
-        $time = date('Y-m-d H:i:s');
-        $sql = sprintf("INSERT INTO `version` (`version`, `update_time`) VALUES ($value, '%s');", $time);
+        $time    = date('Y-m-d H:i:s');
+        $comment = empty($comment) ? ' ' : $comment;
 
+        $sql = sprintf("INSERT INTO `version` (`version`, `update_time`,`comment`) VALUES ($value, '%s','%s');", $time, $comment);
         return $this->pdo->execute($sql);
     }
 
@@ -81,5 +66,33 @@ class Version
         $ret = $this->pdo->fetchAll('SELECT IFNULL(MAX(`version`),0) AS `version` FROM `version` LIMIT 1;');
 
         return $ret[0]['version'];
+    }
+
+    /**
+     * 是否有指定版本号
+     * @param $version
+     * @return bool
+     */
+    public function hasVersionNumber($version)
+    {
+        $ret = $this->pdo->fetchAll("SELECT `version` FROM `version` WHERE `version`={$version} LIMIT 1;");
+
+        return !empty($ret) ? true : false;
+    }
+
+    /**
+     * @return Database
+     */
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
+
+    /**
+     * @param Database $pdo
+     */
+    public function setPdo($pdo)
+    {
+        $this->pdo = $pdo;
     }
 }
