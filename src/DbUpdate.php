@@ -153,11 +153,14 @@ class DbUpdate
         $iterator        = new \DirectoryIterator($this->dbVersionPath);
         foreach ($iterator as $versionFile)
         {
-            if ($versionFile->isFile())
+            if (!$versionFile->isFile())
             {
-                $fileName                                                    = $versionFile->getFilename();
-                $versionFileList[substr(basename($fileName, '.php'), -1, 1)] = $fileName;
+                continue;
             }
+
+            $fileName                        = $versionFile->getFilename();
+            $VersionNumber                   = substr(basename($fileName, '.php'), -1, 1);
+            $versionFileList[$VersionNumber] = $fileName;
         }
 
         return $versionFileList;
