@@ -6,10 +6,12 @@
 
 namespace Tony\Migration;
 
-use ReflectionClass;
-use ReflectionMethod;
 use Tony\DB\DbFactory;
 
+/**
+ * Class DbUpdate
+ * @package Tony\Migration
+ */
 class DbUpdate
 {
     private $pdo;
