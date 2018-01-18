@@ -5,7 +5,6 @@ enabled:
   - unalign_double_arrow
 disabled:
   - align_double_arrow
-  - long_array_syntax
 finder:
   exclude:
     - "tests"
