@@ -1,5 +1,5 @@
 {
-  "name": "tony/migration",
+  "name": "tonychen/php-migration",
   "keywords": [
     "db update",
     "migration"
@@ -13,7 +13,7 @@
   ],
   "require": {
     "php": ">=5.4",
-    "tony/php-db": "0.*"
+    "tonychen/php-db": "0.*"
   },
   "require-dev": {
     "codeception/codeception": "@dev"
@@ -22,18 +22,5 @@
     "psr-4": {
       "Tony\\Migration\\": "src/"
     }
-  },
-  "repositories": [
-    {
-      "packagist": false
-    },
-    {
-      "type": "composer",
-      "url": "https://packagist.phpcomposer.com"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/TonyChen-SH/php-db.git"
-    }
-  ]
+  }
 }
