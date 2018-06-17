@@ -26,7 +26,7 @@ class DbUpdate
     }
 
     /**
-     * 获取数据库对象
+     * 获取数据库对象.
      *
      * @return \Tony\DB\Database
      */
