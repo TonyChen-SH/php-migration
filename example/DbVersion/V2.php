@@ -11,7 +11,7 @@ use Tony\Migration\AbstractMigration;
  * 数据库初始化的版本
  * 类型命名规则：V+数字，如V1代表的是版本号1,会在version数据库的version字段插入新值1.
  */
-class V1 extends AbstractMigration
+class V2 extends AbstractMigration
 {
     /**
      * 数据库操作的实现此方法.
@@ -20,7 +20,7 @@ class V1 extends AbstractMigration
      */
     public function change()
     {
-        $sql = 'CREATE TABLE babel
+        $sql = 'CREATE TABLE babel2
         (
 	      player_id BIGINT NOT NULL
 		  PRIMARY KEY,
@@ -37,6 +37,6 @@ class V1 extends AbstractMigration
      */
     public function getComment()
     {
-        return '这一个测试的备注';
+        return '这一个测试的备注2';
     }
 }

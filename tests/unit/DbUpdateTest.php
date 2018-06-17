@@ -6,12 +6,8 @@ use Tony\Migration\DbUpdate;
  * User: Tony Chen
  * Date: 2017/6/3.
  */
-class DbUpdateTest extends \Codeception\Test\Unit
+class DbUpdateTest extends TestBase
 {
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
     /**
      * @var DbUpdate
      */
@@ -19,12 +15,9 @@ class DbUpdateTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $path = DB_VERSION_PATH;
+        parent::_before();
+        $path           = DB_VERSION_PATH;
         $this->dbUpdate = new DbUpdate(getDbConfig(), $path);
-    }
-
-    protected function _after()
-    {
     }
 
     // tests
@@ -32,6 +25,14 @@ class DbUpdateTest extends \Codeception\Test\Unit
     {
         $files = $this->dbUpdate->getVersionFileList();
 
-        $this->assertGreaterThan(0, count($files));
+        static::assertGreaterThan(0, count($files));
+    }
+
+    /**
+     * @depends testGetVersionFileList
+     */
+    public function testUpdate()
+    {
+        $this->dbUpdate->update();
     }
 }
