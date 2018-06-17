@@ -11,22 +11,16 @@
 > migration是一个数据版本管理工具，每次的数据库结构的更改，都用sql语句的形式写下来，让php程序去执行。当前数据库版本执行完毕，version表对记录当前执行的数据库版本号，当下次执行的时候会进行比对。如果当前执行的版本小于等于version表的最近版本，就不做执行更新操作，如果大于最新版本，就执行更新操作
 
 ### Install
+```bash
+$ composer require tonychen/php-migration
+```
+或者
 ```php
   // 把下面的代码片段，加入到composer.json文件里面
   // 由于tony这个命名空间在packagist已经有人用了，我的加不进去，暂代用直连方式
   "require": {
-    "tony/migration": "0.1"
-  },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/TonyChen-SH/migration.git"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/TonyChen-SH/php-db.git"
-    }
-  ]
+    "tonychen/migration": "0.1"
+  }
 ```
 
 ### Usage
