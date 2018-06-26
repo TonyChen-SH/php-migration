@@ -158,9 +158,12 @@ class DbUpdate
                 continue;
             }
 
-            $fileName                        = $versionFile->getFilename();
-            $VersionNumber                   = substr(basename($fileName, '.php'), -1, 1);
-            $versionFileList[$VersionNumber] = $fileName;
+            $fileName = $versionFile->getFilename();
+            $match    = [];
+            preg_match('/^V(\d+)/S', basename($fileName, '.php'), $match);
+            $versionNumber = $match[1];
+
+            $versionFileList[$versionNumber] = $fileName;
         }
 
         return $versionFileList;
