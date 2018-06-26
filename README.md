@@ -19,7 +19,7 @@ $ composer require tonychen/php-migration
   // 把下面的代码片段，加入到composer.json文件里面
   // 由于tony这个命名空间在packagist已经有人用了，我的加不进去，暂代用直连方式
   "require": {
-    "tonychen/migration": "0.1"
+    "tonychen/php-migration": "^0.1.0"
   }
 ```
 
