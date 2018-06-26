@@ -17,7 +17,6 @@ $ composer require tonychen/php-migration
 或者
 ```php
   // 把下面的代码片段，加入到composer.json文件里面
-  // 由于tony这个命名空间在packagist已经有人用了，我的加不进去，暂代用直连方式
   "require": {
     "tonychen/php-migration": "^0.1.0"
   }
@@ -54,7 +53,6 @@ $dbUpdate->update();
 ### TODO
 - [x] 删除指定版本的版本号以后，可以把该版本号重新执行一遍
 - [x] 每个版本号，数据内需要更新内容的备注
-
 
 ### 许可
 本项目采用Apache License 2.0协议，了解更多请看协议文件。
